@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  db:
+    restart: always
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    restart: always
+    volumes: []
+    environment:
+      - GIN_MODE=release
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    restart: always
+    volumes: []
+    ports:
+      - "80:80"
